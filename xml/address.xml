@@ -1,0 +1,14 @@
+<?xml version='1.0'?>
+<address>
+<street>13 High Street</street>
+<county>Oxfordshire</county>
+<city>
+<name>Oxford</name>
+<zip>OX1 1BA</zip>
+</city>
+<city>
+<name>karimnagar</name>
+<zip>505445</zip>
+</city>
+<country>UK</country>
+</address>

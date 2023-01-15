@@ -1,0 +1,155 @@
+<html>
+<body background="wall.jpg">
+<style>
+h1
+{
+	color:#800000;
+	text-align:center;
+	
+}
+h3
+{
+	color:green;
+}
+div
+{
+	margin:0px 350px;
+	border-radius:5px;
+	width:700px;
+}
+input 
+{
+	color:blue;
+	padding:10px;
+	background-color:#f9f9f9;
+}
+textarea
+{
+	background-color:#f9f9f9;
+}
+input:hover
+{
+	background-color:Gainsboro;
+}
+textarea:hover
+{
+	background-color:Gainsboro;
+}
+select
+{
+	background-color:99CCFF;
+	padding:8px 15px ;
+}
+option
+{
+	padding:8px 15px ;
+}
+fieldset
+{
+	margin:50px 50px;
+	padding:30px;
+	width:100px;
+	height:700px;
+}
+input[type=submit]
+{
+	color:white;
+	padding:14px;
+	margin:0px 90px;
+	
+	width:160px;
+	background-color:663399;
+}
+input[type=submit].a
+{
+	color:red;
+	padding:10px;
+	margin:-37px 270px;
+	width:160px;
+	background-color:663399;
+	 background-image: url("google.jpeg");
+}
+</style>
+<div>
+<fieldset>
+<h1>Dictionary</h1>
+<?php
+if(isset($_POST['save'])&&!isset($_POST['search']))
+{
+	$root=0;
+	$num=0;
+ $word=$_POST['word'];
+     $telugu=$_POST['telugu'];
+     $english=$_POST['english'];
+     $other=$_POST['other'];
+      $user_name="root";
+     $password="rgukt123";
+     $database="Dictionary";
+     $server="localhost";
+     $db_handle = mysql_connect($server, $user_name, $password);
+     $db_found=mysql_select_db($database,$db_handle);
+  if($db_found)
+     {                  
+     		$sqll="select * from studentEng";
+     		$res=mysql_query($sqll);
+     		 $num=mysql_num_rows($res);
+     		  $SQL = "select word from studentEng where word='$word'";
+                    $result = mysql_query($SQL);
+                    if(mysql_num_rows($result)<=0)
+                    {		            
+	     		if(trim($word!='')&&(trim($telugu)!=''||trim($english)!=''))
+	     		{
+		            $SQL = "insert into studentEng values('$word','$english','$telugu','$other')";
+		            $result = mysql_query($SQL);
+		            if($result)
+		            {
+		            	echo "<h3><i><strong>success</strong></i></h3>";
+		            	echo "<p style='color:Indigo'>Count:<a href='totaldic.php'>'$num'</a></p>";
+		            }	
+		            	
+		          }
+		           else
+		           {
+		           	echo "<h3><i><strong>Enter correctly...!</strong></i></h3>";
+		           } 		
+  		 }
+  		 else
+  		 {
+  		 	echo"<h3><i><strong>Already Exsists..!</strong></i></h3>"; 	
+     		 }
+     	}	 
+
+   else
+   	{
+   	echo "Database not found";
+	}
+	 mysql_close($db_handle);
+ }   
+?>
+
+<form method="post" action="Search.php">
+Enter word to search :
+<p><input type="input" name="naamam"  text="30">
+<input type="submit" name="search" class="a" value="Search">
+</form>
+<form method="post" action="MyDict.php">
+<h3>Save your words here :</h3>
+Enter word :<br />
+<input type="text" size="30" name="word" />
+<p>
+Enter telugu meaning :<br />
+<input type="text" size="50" name="telugu" />
+<p>
+Enter English meaning :<br />
+<input type="text" size="50" name="english" />
+<p>
+Others :<br>
+<input type="text" size="50" name="other">
+<p>
+<input type="submit" name="save" value="Save">
+<p>
+
+</fieldset>
+</div>
+<body>
+</html>

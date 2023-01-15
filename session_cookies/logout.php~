@@ -1,0 +1,3 @@
+<?php
+echo "Thanku".$_SESSION["name"];
+?>

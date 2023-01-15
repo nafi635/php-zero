@@ -1,0 +1,7 @@
+Name=nafi
+Phone=9652598983
+RguktId=B121635
+Branch=cse
+Aim=software engineer in google
+Email=nafi.rockz10@gmail.com
+FacebookId=Nafi Smart
